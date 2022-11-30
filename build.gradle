@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.6'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    // security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // lombok
+    implementation 'org.projectlombok:lombok:1.18.18'
+    annotationProcessor 'org.projectlombok:lombok'
+    // Spring Data
+    runtimeOnly "mysql:mysql-connector-java"
+    implementation 'org.flywaydb:flyway-mysql'
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    // Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
