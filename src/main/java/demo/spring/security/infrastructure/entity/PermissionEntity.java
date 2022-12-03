@@ -15,5 +15,5 @@ public class PermissionEntity {
 
     private String name;
 
-    private String lable;
+    private String label;
 }

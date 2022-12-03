@@ -20,7 +20,7 @@ values (1, 1),
        (3, 3),
        (4, 4);
 -- init permission table
-insert into permission(id, name, lable)
+insert into permission(id, name, label)
 values (1, "read", "read"),
        (2, "edit", "edit"),
        (3, "delete", "delete");
