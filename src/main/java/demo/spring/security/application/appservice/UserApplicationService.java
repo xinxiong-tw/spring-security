@@ -1,6 +1,5 @@
 package demo.spring.security.application.appservice;
 
-import demo.spring.security.adapter.reponse.UserReponse;
 import demo.spring.security.domain.model.UserModel;
 import demo.spring.security.domain.service.UserService;
 import lombok.RequiredArgsConstructor;

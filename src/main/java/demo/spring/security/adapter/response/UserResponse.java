@@ -1,4 +1,4 @@
-package demo.spring.security.adapter.reponse;
+package demo.spring.security.adapter.response;
 
 import demo.spring.security.domain.model.UserModel;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import java.util.Set;
 
 @AllArgsConstructor
 @Getter
-public class UserReponse {
+public class UserResponse {
     private Long id;
 
     private String name;
@@ -16,7 +16,7 @@ public class UserReponse {
     private String username;
     private Set<String> roleNames;
 
-    public static UserReponse from(UserModel userModel) {
-        return new UserReponse(userModel.getId(), userModel.getName(), userModel.getUsername(), userModel.getRoleNames());
+    public static UserResponse from(UserModel userModel) {
+        return new UserResponse(userModel.getId(), userModel.getName(), userModel.getUsername(), userModel.getRoleNames());
     }
 }
