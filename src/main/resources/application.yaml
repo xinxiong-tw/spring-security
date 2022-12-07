@@ -14,4 +14,4 @@ spring:
     generate-ddl: false
     hibernate:
       ddl-auto: validate
-
+debug: true
