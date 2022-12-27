@@ -1,8 +1,8 @@
 package demo.spring.security.infrastructure.entity;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Entity

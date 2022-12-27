@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.time.Instant;
 import java.util.Base64;
 
 @Component
@@ -34,7 +35,7 @@ public class JwtTokenUtil {
         try {
             Algorithm algorithm = Algorithm.RSA256(publicKey, privateKey);
             JWTVerifier verifier = JWT.require(algorithm)
-                    .acceptExpiresAt(10) // 5 secs
+                    .acceptExpiresAt(10) // 10 secs
                     .build();
             verifier.verify(token);
             return true;
@@ -57,7 +58,10 @@ public class JwtTokenUtil {
 
     public String generateToken(UserDetails user) {
         Algorithm algorithm = Algorithm.RSA256(publicKey, privateKey);
-        return JWT.create().withClaim("username", user.getUsername()).sign(algorithm);
+        return JWT.create()
+                .withExpiresAt(Instant.now().plusSeconds(10))
+                .withClaim("username", user.getUsername())
+                .sign(algorithm);
     }
 
     public static void main(String[] args) {

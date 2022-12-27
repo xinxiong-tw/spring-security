@@ -1,6 +1,7 @@
 package demo.spring.security.infrastructure.config;
 
 import demo.spring.security.infrastructure.JwtTokenFilter;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,8 +15,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-
-import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 @RequiredArgsConstructor
@@ -36,9 +35,10 @@ public class WebSecurityConfig {
                 .exceptionHandling()
                 .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage()))
                 .and()
-                .authorizeRequests()
-                .antMatchers("/api/v1/users/token").permitAll()
-                .antMatchers("/api/v1/users/**").hasRole("admin")
+                .authorizeHttpRequests()
+                .requestMatchers("/api/v1/users/token").permitAll()
+                .requestMatchers("/api/v1/users/**").hasRole("admin")
+                .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
